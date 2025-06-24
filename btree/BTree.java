@@ -121,7 +121,11 @@ public class BTree<E extends Comparable<E>> {
     }
 
     private void removeFromLeaf(BNode<E> node, int idx){
-        
+        for (int i = idx; i < node.count; i++) {
+            node.keys.set(i, node.keys.get( + 1));
+        }
+        node.keys.set(node.count - 1, null);
+        node.count--;
     }
 
     private void removeFromInternal(BNode<E> node, int idx){
@@ -153,7 +157,7 @@ public class BTree<E extends Comparable<E>> {
     }
 
     private int minKeys(){
-        
+
     }
 
     public String toString(){
