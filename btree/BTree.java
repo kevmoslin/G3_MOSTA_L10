@@ -92,6 +92,18 @@ public class BTree<E extends Comparable<E>> {
         return median;
     }
 
+    public boolean search(E c1){
+
+    }
+
+    public boolean searchRecursive(BNode<E> current, E cl){
+        if (current == null) {
+            return false;
+        }
+
+        
+    }
+
     public String toString(){
         String s = " ";
         if (isEmpty()) {
