@@ -21,5 +21,7 @@ public class RegistroEstudiante implements Comparable<RegistroEstudiante>{
         return Integer.compare(this.codigo, otro.codigo);
     }
 
-    
+    public String toString(){
+        return codigo + " - " + nombre;
+    }
 }
