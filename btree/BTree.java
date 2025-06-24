@@ -131,10 +131,18 @@ public class BTree<E extends Comparable<E>> {
     private void removeFromInternal(BNode<E> node, int idx){
         E key = node.keys.get(idx);
 
+        //hijo izquierdo no esta vacio
         if (node.childs.get(idx).count >= minKeys() + 1) {
             E pred = getPredecessor(node, idx);
             node.keys.set(idx, pred);
             delete(node.childs.get(idx), pred);
+        }
+
+        //hijo derecho no esta vacio
+        else if(node.childs.get( + 1).count >= minKeys() + 1) {
+            E succ = getSuccessor(node, idx);
+            node.keys.set(idx, succ);
+            delete(node.childs.get(idx + 1), succ);
         }
     }
 
