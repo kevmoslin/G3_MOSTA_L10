@@ -10,7 +10,11 @@ public class Main {
             arbol.insert(elem);
         }
 
+        //imprimir
         System.out.println("Contenido del arbol B: ");
         System.out.println(arbol.toString());
+
+        //buscar
+        System.out.println(arbol.search(5));
     }
 }
