@@ -93,7 +93,7 @@ public class BTree<E extends Comparable<E>> {
     }
 
     public String toString(){
-
+        
     }
 
     private String writeTree(BNode<E> current, int level){
@@ -109,10 +109,11 @@ public class BTree<E extends Comparable<E>> {
             sb.append("]");
 
             for (int i = 0; i < current.count; i++) {
-                if (current.) {
-                    
+                if (current.childs.get(i) != null) {
+                    sb.append(writeTree(current.childs.get(i), level + 1));
                 }
             }
         }
+        return sb.toString();
     }
 }
