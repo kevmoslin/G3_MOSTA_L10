@@ -91,4 +91,12 @@ public class BTree<E extends Comparable<E>> {
         current.count--;
         return median;
     }
+
+    public String toString(){
+
+    }
+
+    private String writeTree(){
+        
+    }
 }
