@@ -405,18 +405,20 @@ public class BTree<E extends Comparable<E>> {
         return buscarNombreRecursivo(this.root, codigo);
     }
 
-    private String buscarNombreRecursivo(BNode<RegistroEstudiante> current, int codigo){
+    private String buscarNombreRecursivo(BNode<E> current, int codigo){
         if (current == null) {
             return "no encontrado. ";
         }
 
         int[] pos = new int[1];
-        RegistroEstudiante buscado = new RegistroEstudiante(codigo, "");
+        @SuppressWarnings("unchecked")
+        E buscado = (E) new RegistroEstudiante(codigo, "");
 
         boolean found = current.searchNode(buscado, pos);
         if (found) {
-            return current.keys.get(pos[0]).getNombre();
-        } else{
+            RegistroEstudiante est = (RegistroEstudiante) current.keys.get(pos[0]);
+            return est.getNombre();
+        } else {
             return buscarNombreRecursivo(current.childs.get(pos[0]), codigo);
         }
     }
