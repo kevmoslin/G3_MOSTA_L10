@@ -123,6 +123,20 @@ public class BTree<E extends Comparable<E>> {
         if (found) {
             if (node.childs.get(pos[0]) == null) {
                 removeFromLeaf(node, orden);;
+            } else{
+                removeFromInternal(node, pos[0]);
+            }
+        } else{
+            if (node.childs.get(pos[0]) == null) {
+                System.out.println("Clave " + cl + " no encontrada");
+                return;
+            }
+
+            boolean flag = (pos[0] == node.count);
+            delete(node.childs.get(pos[0]), cl);
+
+            if (node.childs.get(pos[0]).count < minKeys()) {
+                fixUnderflow(node, pos[0]);
             }
         }
     }
