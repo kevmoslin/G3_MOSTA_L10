@@ -168,7 +168,12 @@ public class BTree<E extends Comparable<E>> {
     }
 
     private E getPredecessor(BNode<E> node, int idx){
+        BNode<E> current = node.childs.get(idx);
+        while (current.childs.get(current.count) != null) {
+            current = current.childs.get(current.count);
+        }
 
+        return current.keys.get(current.count - 1);
     }
 
     private E getSuccessor(BNode<E> node, int idx){
