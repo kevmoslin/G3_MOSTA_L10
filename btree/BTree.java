@@ -96,7 +96,10 @@ public class BTree<E extends Comparable<E>> {
 
     }
 
-    private String writeTree(){
-        
+    private String writeTree(BNode<E> current, int level){
+        StringBuilder sb = new StringBuilder();
+        if (current != null) {
+            
+        }
     }
 }
