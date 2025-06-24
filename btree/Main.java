@@ -2,26 +2,33 @@ package btree;
 
 public class Main {
     public static void main(String[] args) {
-        BTree<Integer> arbol = new BTree<>(4); // Orden 4
+        BTree<Integer> btree = new BTree<>(4);
 
-        // Insertar elementos
-        int[] insertar = {10, 20, 5, 6, 12, 30, 7, 17, 3, 8, 15, 2};
-        for (int clave : insertar) {
-            arbol.insert(clave);
+        int[] datos = {25, 10, 16, 30, 40, 1, 3, 8, 15, 18, 19, 21, 27, 28, 33, 36, 39, 42, 45};
+
+        for (int dato : datos) {
+            btree.insert(dato);
         }
 
-        // Mostrar árbol después de inserciones
-        System.out.println("Árbol después de insertar:");
-        System.out.println(arbol.toString());
+        // Mostrar el árbol
+        System.out.println("Árbol B luego de insertar los elementos:");
+        System.out.println(btree);
 
-        // Eliminar claves una por una
-        int[] eliminar = {6, 7, 5, 8, 10, 12};
+        // Eliminar algunos elementos
+        btree.remove(8);
+        btree.remove(30);
+        btree.remove(25);
 
-        for (int clave : eliminar) {
-            System.out.println("\nEliminando clave: " + clave);
-            arbol.remove(clave);
-            System.out.println("Árbol después de eliminar " + clave + ":");
-            System.out.println(arbol.toString());
+        System.out.println("\nÁrbol B luego de eliminar 8, 30 y 25:");
+        System.out.println(btree);
+
+        // Probar construcción desde archivo
+        try {
+            BTree<Integer> fromFile = BTree.building_Btree("arbolB.txt");
+            System.out.println("\nÁrbol B cargado desde archivo:");
+            System.out.println(fromFile);
+        } catch (ItemNoFound e) {
+            System.err.println("Error al construir el árbol desde archivo: " + e.getMessage());
         }
     }
 }
