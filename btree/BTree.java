@@ -117,7 +117,14 @@ public class BTree<E extends Comparable<E>> {
     }
 
     private void delete(BNode<E> node, E cl){
+        int[] pos = new int[1];
+        boolean found = node.searchNode(cl, pos);
 
+        if (found) {
+            if (node.childs.get(pos[0]) == null) {
+                removeFromLeaf(node, orden);;
+            }
+        }
     }
 
     private void removeFromLeaf(BNode<E> node, int idx){
