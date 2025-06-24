@@ -400,4 +400,10 @@ public class BTree<E extends Comparable<E>> {
 
         return true;
     }
+
+    public String buscarNombre(int codigo){
+        return buscarNombreRecursivo(this.root, codigo);
+    }
+
+    
 }
