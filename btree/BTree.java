@@ -99,7 +99,13 @@ public class BTree<E extends Comparable<E>> {
     private String writeTree(BNode<E> current, int level){
         StringBuilder sb = new StringBuilder();
         if (current != null) {
-            
+            sb.append("Nivel ").append(level).append("{");
+            for (int i = 0; i < current.count; i++) {
+                sb.append(current.keys.get(i));
+                if (i < current.count - 1) {
+                    
+                }
+            }
         }
     }
 }
