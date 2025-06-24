@@ -24,7 +24,7 @@ public class Main {
 
         // Probar construcción desde archivo
         try {
-            BTree<Integer> fromFile = BTree.building_Btree("arbolB.txt");
+            BTree<Integer> fromFile = BTree.building_BTree("arbolB.txt");
             System.out.println("\nÁrbol B cargado desde archivo:");
             System.out.println(fromFile);
         } catch (ItemNoFound e) {
