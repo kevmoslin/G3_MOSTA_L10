@@ -379,6 +379,25 @@ public class BTree<E extends Comparable<E>> {
     }
 
     private static boolean validateBTree(BNode<Integer> node, int orden){
-        
+        if (node == null) {
+            return true;
+        }
+
+        if (node.count > orden - 1) {
+            return false;
+        }
+        if (node.count < (orden - 1) / 2 && node != node.childs.get(0)) {
+            return false;
+        }
+
+        for (int i = 0; i < node.count; i++) {
+            if (node.childs.get(i) != null) {
+                if (!validateBTree(node.childs.get(i), orden)) {
+                    return false;
+                }
+            }
+        }
+
+        return false;
     }
 }
