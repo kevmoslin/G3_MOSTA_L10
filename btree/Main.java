@@ -15,6 +15,7 @@ public class Main {
         System.out.println(arbol.toString());
 
         //buscar
+        System.out.println("Buscando 5: ");
         System.out.println(arbol.search(5));
     }
 }
