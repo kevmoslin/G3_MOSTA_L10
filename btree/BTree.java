@@ -93,7 +93,13 @@ public class BTree<E extends Comparable<E>> {
     }
 
     public String toString(){
-        
+        String s = " ";
+        if (isEmpty()) {
+            s += "BTree is empty";
+        } else{
+            s = writeTree(this.root, 0);
+        }
+        return s;
     }
 
     private String writeTree(BNode<E> current, int level){
