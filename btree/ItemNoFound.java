@@ -1,5 +1,7 @@
 package btree;
 
-public class ItemNoFound {
-    
+public class ItemNoFound extends Exception{
+    public ItemNoFound(String message){
+        super(message);
+    }
 }
