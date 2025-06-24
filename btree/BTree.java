@@ -185,7 +185,13 @@ public class BTree<E extends Comparable<E>> {
     }
 
     private void fixUnderflow(BNode<E> parent, int idx){
+        BNode<E> child = parent.childs.get(idx);
 
+        if (idx > 0 && parent.childs.get(idx - 1).count > minKeys()){
+            borrowFromLeft(parent, idx);
+        } else if (idx < parent.count && parent.childs.get(idx + 1).count > minKeys()){
+            
+        }
     }
 
     private void borrowFromLeft(BNode<E> parent, int idx){
