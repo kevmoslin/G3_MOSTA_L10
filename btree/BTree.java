@@ -190,12 +190,33 @@ public class BTree<E extends Comparable<E>> {
         if (idx > 0 && parent.childs.get(idx - 1).count > minKeys()){
             borrowFromLeft(parent, idx);
         } else if (idx < parent.count && parent.childs.get(idx + 1).count > minKeys()){
-            
+            borrowFromRight(parent, idx);
+        } else{
+            if (idx < parent.count) {
+                merge(parent, idx);
+            } else{
+                merge(parent, idx - 1);
+            }
         }
     }
 
     private void borrowFromLeft(BNode<E> parent, int idx){
+        BNode<E> child = parent.childs.get(idx);
+        BNode<E> left = parent.childs.get(idx - 1);
 
+        for (int i = child.count; i > 0; i--) {
+            child.keys.set(i, child.keys.get(i - 1));
+            child.childs.set(i + 1, child.childs.get(i));
+        }
+        child.childs.set(1, child.childs.get(0));
+
+        child.keys.set(0, parent.keys.get(idx - 1));
+        child.childs.set(0, left.childs.get(left.count));
+
+        parent.keys.set(idx - 1, left.keys.get(left.count - 1));
+
+        child.count++;
+        left.count--;
     }
 
     private void borrowFromRight(BNode<E> parent, int idx){
@@ -207,7 +228,7 @@ public class BTree<E extends Comparable<E>> {
     }
 
     private int minKeys(){
-
+        return (orden - 1) / 2;
     }
 
     public String toString(){
