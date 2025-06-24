@@ -112,6 +112,10 @@ public class BTree<E extends Comparable<E>> {
         }
     }
 
+    public void remove(E c1){
+        
+    }
+
     public String toString(){
         String s = " ";
         if (isEmpty()) {
