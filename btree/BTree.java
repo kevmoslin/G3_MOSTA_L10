@@ -131,8 +131,7 @@ public class BTree<E extends Comparable<E>> {
                 System.out.println("Clave " + cl + " no encontrada");
                 return;
             }
-
-            boolean flag = (pos[0] == node.count);
+            
             delete(node.childs.get(pos[0]), cl);
 
             if (node.childs.get(pos[0]).count < minKeys()) {
@@ -150,11 +149,11 @@ public class BTree<E extends Comparable<E>> {
     }
 
     private void removeFromInternal(BNode<E> node, int idx){
-        E key = node.keys.get(idx);
+        E pred;
 
         //hijo izquierdo no esta vacio
         if (node.childs.get(idx).count >= minKeys() + 1) {
-            E pred = getPredecessor(node, idx);
+            pred = getPredecessor(node, idx);
             node.keys.set(idx, pred);
             delete(node.childs.get(idx), pred);
         }
@@ -185,8 +184,6 @@ public class BTree<E extends Comparable<E>> {
     }
 
     private void fixUnderflow(BNode<E> parent, int idx){
-        BNode<E> child = parent.childs.get(idx);
-
         if (idx > 0 && parent.childs.get(idx - 1).count > minKeys()){
             borrowFromLeft(parent, idx);
         } else if (idx < parent.count && parent.childs.get(idx + 1).count > minKeys()){
