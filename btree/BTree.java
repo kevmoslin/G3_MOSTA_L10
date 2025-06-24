@@ -101,7 +101,15 @@ public class BTree<E extends Comparable<E>> {
             return false;
         }
 
-        
+        int pos[] = new int[1];
+        boolean found = current.searchNode(cl, pos);
+
+        if (found) {
+            System.out.println(c1 + " se encuentra en el nodo " + current.idNode + " en la poscicion " + pos[0]);
+            return true;
+        } else{
+            return searchRecursive(current.childs.get(pos[0]), cl);
+        }
     }
 
     public String toString(){
