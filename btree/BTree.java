@@ -177,7 +177,11 @@ public class BTree<E extends Comparable<E>> {
     }
 
     private E getSuccessor(BNode<E> node, int idx){
-
+        BNode<E> current = node.childs.get(idx + 1);
+        while (current.childs.get(0) != null) {
+            current = current.childs.get(0);
+        }
+        return current.keys.get(0);
     }
 
     private void fixUnderflow(BNode<E> parent, int idx){
