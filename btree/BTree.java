@@ -306,6 +306,44 @@ public class BTree<E extends Comparable<E>> {
 
     public static BTree<Integer> building_BTree(String path) throws ItemNoFound{
         Map<Integer, BNode<Integer>> nodos = new HashMap<>();
-        
+        Map<Integer, Integer> niveles = new HashMap<>();
+        List<String> lineas = new ArrayList<>();
+        int orden = 0;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                lineas.add(linea.trim());
+            }
+        } catch (IOException e) {
+            throw new ItemNoFound("Error al leer ela archivo" + e.getMessage());
+        }
+
+        try {
+            orden = Integer.parseInt(lineas.get(0));
+        } catch (NumberFormatException e) {
+            throw new ItemNoFound("Orden invalido");
+        }
+
+        BTree<Integer> tree = new BTree<>(orden);
+
+        for (int i = 1; i < lineas.size(); i++) {
+            String[] partes = lineas.get(i).split(",");
+            if (partes.length < 3) {
+                throw new ItemNoFound("Formato invalido en linea: " + lineas.get(i));
+            }
+
+            int nivel = Integer.parseInt(partes[0]);
+            int id = Integer.parseInt(partes[1]);
+            BNode<Integer> node = new BNode<>(orden);
+            node.count = partes.length - 2;
+
+            for (int j = 2; j < partes.length; j++){
+                node.keys.set(j - 2, Integer.parseInt(partes[j]));
+            }
+
+            nodos.put(id, node);
+            niveles.put(id, nivel);
+        }
     }
 }
