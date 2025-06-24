@@ -316,7 +316,7 @@ public class BTree<E extends Comparable<E>> {
                 lineas.add(linea.trim());
             }
         } catch (IOException e) {
-            throw new ItemNoFound("Error al leer ela archivo" + e.getMessage());
+            throw new ItemNoFound("Error al leer el archivo: " + e.getMessage());
         }
 
         try {
@@ -398,6 +398,6 @@ public class BTree<E extends Comparable<E>> {
             }
         }
 
-        return false;
+        return true;
     }
 }
