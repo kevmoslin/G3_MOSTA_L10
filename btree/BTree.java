@@ -113,7 +113,12 @@ public class BTree<E extends Comparable<E>> {
     }
 
     public void remove(E c1){
-
+        if (!isEmpty()) {
+            delete(root, c1);
+            if (root.count == 0 && root.childs.get(0) != null) {
+                root = root.childs.get(0);
+            }
+        }
     }
 
     private void delete(BNode<E> node, E cl){
@@ -131,7 +136,7 @@ public class BTree<E extends Comparable<E>> {
                 System.out.println("Clave " + cl + " no encontrada");
                 return;
             }
-            
+
             delete(node.childs.get(pos[0]), cl);
 
             if (node.childs.get(pos[0]).count < minKeys()) {
