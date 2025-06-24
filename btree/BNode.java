@@ -55,7 +55,7 @@ public class BNode<E extends Comparable<E>> {
             if (i < count - 1) sb.append(", ");
         }
 
-        sb.append("]\n");
+        sb.append("]");
         return sb.toString();
     }
 }

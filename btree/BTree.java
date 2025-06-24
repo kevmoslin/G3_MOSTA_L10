@@ -112,7 +112,7 @@ public class BTree<E extends Comparable<E>> {
                     sb.append(" | ");
                 }
             }
-            sb.append("]");
+            sb.append("]\n");
 
             for (int i = 0; i < current.count; i++) {
                 if (current.childs.get(i) != null) {
