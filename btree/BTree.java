@@ -93,7 +93,7 @@ public class BTree<E extends Comparable<E>> {
     }
 
     public boolean search(E c1){
-
+        return searchRecursive(this.root, c1);
     }
 
     public boolean searchRecursive(BNode<E> current, E cl){
@@ -105,7 +105,7 @@ public class BTree<E extends Comparable<E>> {
         boolean found = current.searchNode(cl, pos);
 
         if (found) {
-            System.out.println(c1 + " se encuentra en el nodo " + current.idNode + " en la poscicion " + pos[0]);
+            System.out.println(cl + " se encuentra en el nodo " + current.idNode + " en la poscicion " + pos[0]);
             return true;
         } else{
             return searchRecursive(current.childs.get(pos[0]), cl);
