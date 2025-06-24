@@ -30,5 +30,7 @@ public class Main {
         } catch (ItemNoFound e) {
             System.err.println("Error al construir el árbol desde archivo: " + e.getMessage());
         }
+
+        System.out.println("Directorio actual: " + System.getProperty("user.dir"));
     }
 }
