@@ -220,7 +220,25 @@ public class BTree<E extends Comparable<E>> {
     }
 
     private void borrowFromRight(BNode<E> parent, int idx){
+        BNode<E> child = parent.childs.get(idx);
+        BNode<E> right = parent.childs.get(idx + 1);
 
+        child.keys.set(child.count, parent.keys.get(idx));
+        child.childs.set(child.count + 1, right.childs.get(0));
+
+        parent.keys.set(idx, right.keys.get(0));
+
+        for (int i = 0; i < right.count - 1; i++) {
+            right.keys.set(i, right.keys.get(i + 1));
+            right.childs.set(i, right.childs.get(i + 1));
+        }
+
+        right.childs.set(right.count - 1, right.childs.get(right.count));
+        right.childs.set(right.count, null);
+        right.keys.set(right.count - 1, null);
+        right.count--;
+
+        child.count--;
     }
 
     private void merge(BNode<E> parent, int idx){
