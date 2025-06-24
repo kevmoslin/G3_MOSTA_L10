@@ -113,6 +113,46 @@ public class BTree<E extends Comparable<E>> {
     }
 
     public void remove(E c1){
+
+    }
+
+    private void delete(BNode<E> node, E cl){
+
+    }
+
+    private void removeFromLeaf(BNode<E> node, int idx){
+        
+    }
+
+    private void removeFromInternal(BNode<E> node, int idx){
+
+    }
+
+    private E getPredecessor(BNode<E> node, int idx){
+
+    }
+
+    private E getSuccessor(BNode<E> node, int idx){
+
+    }
+
+    private void fixUnderflow(BNode<E> parent, int idx){
+
+    }
+
+    private void borrowFromLeft(BNode<E> parent, int idx){
+
+    }
+
+    private void borrowFromRight(BNode<E> parent, int idx){
+
+    }
+
+    private void merge(BNode<E> parent, int idx){
+
+    }
+
+    private int minKeys(){
         
     }
 
