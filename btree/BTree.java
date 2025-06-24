@@ -242,7 +242,14 @@ public class BTree<E extends Comparable<E>> {
     }
 
     private void merge(BNode<E> parent, int idx){
+        BNode<E> child = parent.childs.get(idx);
+        BNode<E> sibling = parent.childs.get(idx + 1);
 
+        child.keys.set(child.count, parent.keys.get(idx));
+        for (int i = 0; i < sibling.count; i++) {
+            child.keys.set(child.count + 1 + i, sibling.keys.get(i));
+            child.childs.set(child.count + 1 + i, sibling.childs.get(i));
+        }
     }
 
     private int minKeys(){
