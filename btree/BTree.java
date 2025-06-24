@@ -345,5 +345,40 @@ public class BTree<E extends Comparable<E>> {
             nodos.put(id, node);
             niveles.put(id, nivel);
         }
+
+        for(Map.Entry<Integer, BNode<Integer>> entry : nodos.entrySet()){
+            int id = entry.getKey();
+            BNode<Integer> node = entry.getValue();
+            int nivel = niveles.get(id);
+
+            if (nivel == 0) {
+                tree.root = node;
+            } else{
+                for (Map.Entry<Integer, BNode<Integer>> posiblePadre : nodos.entrySet()){
+                    int idPadre = posiblePadre.getKey();
+                    BNode<Integer> padre = posiblePadre.getValue();
+                    int nivelPadre = niveles.get(idPadre);
+
+                    if (nivelPadre == nivel - 1 && padre.childs.contains(null)) {
+                        for (int i = 0; i < padre.childs.size(); i++){
+                            if (padre.childs.get(i) == null) {
+                                padre.childs.set(i, node);
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (!validateBTree(tree.root, orden)) {
+            throw new ItemNoFound("El arbol no cumple con las propiedades de un B-Tree.");
+        }
+        return tree;
+    }
+
+    private static boolean validateBTree(BNode<Integer> node, int orden){
+        
     }
 }
