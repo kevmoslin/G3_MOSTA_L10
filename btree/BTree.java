@@ -1,5 +1,8 @@
 package btree;
 
+import java.io.*;
+import java.util.*;
+
 public class BTree<E extends Comparable<E>> {
     private BNode<E> root;
     private int orden;
@@ -299,5 +302,10 @@ public class BTree<E extends Comparable<E>> {
             }
         }
         return sb.toString();
+    }
+
+    public static BTree<Integer> building_BTree(String path) throws ItemNoFound{
+        Map<Integer, BNode<Integer>> nodos = new HashMap<>();
+        
     }
 }
